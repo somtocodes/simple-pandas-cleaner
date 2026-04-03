@@ -10,14 +10,13 @@ uploaded_file = st.file_uploader("Upload a .csv or .xlsx file", type=['csv', 'xs
 
 if uploaded_file is not None:
   try:
-    if uploaded_file is not None:
-      if uploaded_file.name.endswith('.csv'):
-        df = pandas.read_csv(uploaded_file)
-      elif uploaded_file.name.endswith('.xlsx'):
-        df = pandas.read_excel(uploaded_file)
-      else:
-        st.error('Please upload a valid CSV or Excel file')
-        st.stop()
+    if uploaded_file.name.endswith('.csv'):
+      df = pandas.read_csv(uploaded_file)
+    elif uploaded_file.name.endswith('.xlsx'):
+      df = pandas.read_excel(uploaded_file)
+    else:
+      st.error('Please upload a valid CSV or Excel file')
+      st.stop()
   except Exception as e:
     st.error(f'Something went wrong while reading the file. Is it corrupted? Error: {e}')
     st.stop()
