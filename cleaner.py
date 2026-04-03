@@ -4,7 +4,7 @@ import pandas
 def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=True):
     data = data.copy()
     
-    if important_cols = None:
+    if important_cols == None:
         important_cols = []
     
     report = {}
