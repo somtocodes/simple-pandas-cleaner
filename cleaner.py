@@ -14,7 +14,7 @@ def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=T
         unique_values = df[cols].nunique()
         
         # skip important columns
-        if cols = important_cols:
+        if cols == important_cols:
             continue
         #drop columns with too many missing values
         if missing_ratio >= missing_threshold:
