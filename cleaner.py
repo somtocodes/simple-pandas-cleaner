@@ -1,7 +1,7 @@
 import pandas
 
 
-def autoclean(data, missing_threshold = 0.5, important_cols=None, split_dates=True):
+def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=True):
     data = data.copy()
     
     if important_cols = None:
