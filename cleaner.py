@@ -33,6 +33,7 @@ def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=T
                     data[cols] = pandas.to_datetime(data[cols])
                     data[f'{cols}_year'] =  data[cols].dt.year
                     data[f'{cols}_month'] =  data[cols].dt.month
+                    data[f'{cols}_day'] =  data[cols].dt.day
                 except:
                     data[cols].fillna(data[cols].mode(), inplace=True)
             else:
