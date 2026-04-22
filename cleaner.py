@@ -35,9 +35,9 @@ def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=T
                     data[f'{cols}_month'] =  data[cols].dt.month
                     data[f'{cols}_day'] =  data[cols].dt.day
                 except:
-                    data[cols].fillna(data[cols].mode(), inplace=True)
+                    data[cols].fillna(data[cols].mode()[0], inplace=True)
             else:
-                data[cols].fillna(data[cols].mode(), inplace=True)
+                data[cols].fillna(data[cols].mode()[0], inplace=True)
             
     return data, report
         
