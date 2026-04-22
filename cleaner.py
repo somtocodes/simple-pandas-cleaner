@@ -14,15 +14,15 @@ def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=T
         unique_values = data[cols].nunique()
         
         # skip important columns
-        if cols == important_cols:
+        if cols in important_cols:
             continue
         #drop columns with too many missing values
         if missing_ratio >= missing_threshold:
-            data.drop(columns=[cols], implace = True)
+            data.drop(columns=[cols], inplace = True)
             report[cols] = 'Dropped(too many missing values)'
         #drop values with no variation
         elif unique_values <= 1:
-            df.drop(columns = [cols], inplace = True)            
+            data.drop(columns = [cols], inplace = True)            
             report[cols] = 'Dropped(no variation)'
         #Fill numeric columns with the mean value
         elif data[cols].dtypes in ['int64','float64']:
