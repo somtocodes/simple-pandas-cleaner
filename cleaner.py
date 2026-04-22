@@ -34,10 +34,11 @@ def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=T
                     data[f'{cols}_year'] =  data[cols].dt.year
                     data[f'{cols}_month'] =  data[cols].dt.month
                     data[f'{cols}_day'] =  data[cols].dt.day
+                    data[f'{cols}_weekday'] =  data[cols].dt.day_of_week
                 except:
-                    data[cols].fillna(data[cols].mode()[0], inplace=True)
+                    data[cols].fillna(data[cols].mode()[0])
             else:
-                data[cols].fillna(data[cols].mode()[0], inplace=True)
+                data[cols].fillna(data[cols].mode()[0])
             
     return data, report
         
