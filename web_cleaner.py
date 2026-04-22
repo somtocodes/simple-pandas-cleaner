@@ -22,13 +22,29 @@ if uploaded_file is not None:
     st.stop()
     
   st.subheader('Original Data')
+  st.write(f"Shape: **{df.shape[0]} rows × {df.shape[1]} columns**")
   st.dataframe(df)
   
     
   if st.button('Clean data'):
-    cleaned_df, report = auto_clean(df)
+    with st.spinner("Cleaning your data...")
+      cleaned_df, report = auto_clean(df)
     st.success("Cleaning complete")
+    st.subheader("Before vs After")
+    col1, col2 = st.columns(2)
+    col1.metric("Rows", df.shape[0], delta=cleaned_df.shape[0] - df.shape[0])
+    col2.metric("Columns", df.shape[1], delta=cleaned_df.shape[1] - df.shape[1])
+
+    st.subheader("Cleaning Report")
+    if report:
+      report_df = pandas.DataFrame(list(report.items()), columns=["Column", "Action"])
+      st.dataframe(report_df, use_container_width=True)
+    else:
+      st.info("No changes were needed — your data was already clean!")
+          
+    
     st.subheader("Cleaned Data")
+    st.write(f"Shape: **{cleaned_df.shape[0]} rows × {cleaned_df.shape[1]} columns**")
     st.dataframe(cleaned_df)
     csv = cleaned_df.to_csv(index=False).encode('utf-8')
     st.download_button(label='Download clean data',data=csv, file_name="Cleaned_data.csv", mime="text/csv")
