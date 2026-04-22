@@ -27,7 +27,7 @@ if uploaded_file is not None:
   
     
   if st.button('Clean data'):
-    with st.spinner("Cleaning your data...")
+    with st.spinner("Cleaning your data..."):
       cleaned_df, report = auto_clean(df)
     st.success("Cleaning complete")
     st.subheader("Before vs After")
