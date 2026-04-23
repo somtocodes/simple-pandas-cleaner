@@ -18,7 +18,7 @@ def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=T
             continue
         #drop columns with too many missing values
         if missing_ratio >= missing_threshold:
-           data = data.drop(columns=[cols], inplace = True)
+            data = data.drop(columns=[cols], inplace = True)
             report[cols] = 'Dropped(too many missing values)'
         #drop values with no variation
         elif unique_values <= 1:
@@ -37,7 +37,7 @@ def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=T
                     data[f'{cols}_weekday'] =  data[cols].dt.day_of_week
                     report[cols] = 'Split into date features'
                 except:
-                  data[cols] = data[cols].fillna(data[cols].mode()[0])
+                    data[cols] = data[cols].fillna(data[cols].mode()[0])
                     report[cols] = 'Filled missing values with mode'
             else:
                 data[cols] = data[cols].fillna(data[cols].mode()[0])
