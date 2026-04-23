@@ -37,10 +37,10 @@ def auto_clean(data, missing_threshold = 0.5, important_cols=None, split_dates=T
                     data[f'{cols}_weekday'] =  data[cols].dt.day_of_week
                     report[cols] = 'Split into date features'
                 except:
-                    data[cols].fillna(data[cols].mode()[0])
+                  data[cols] = data[cols].fillna(data[cols].mode()[0])
                     report[cols] = 'Filled missing values with mode'
             else:
-                data[cols].fillna(data[cols].mode()[0])
+                data[cols] = data[cols].fillna(data[cols].mode()[0])
                 report[cols] = 'Filled missing values with mode'
             
     return data, report
