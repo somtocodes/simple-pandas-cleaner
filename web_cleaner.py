@@ -6,7 +6,7 @@ st.set_page_config(page_title="Web Data Cleaner", layout = "centered")
 st.title("Data Cleaner")
 st.write("Upload a messy CSV or Excel file, and i'll clean it for you automatically")
 
-@st.cache_data
+@st.cache_data()
 
 uploaded_file = st.file_uploader("Upload a .csv or .xlsx file", type=['csv', 'xlsx'])
 
